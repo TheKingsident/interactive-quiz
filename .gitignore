@@ -1,1 +1,4 @@
 venv/
+interactive_quiz/interactive_quiz/__pycache__/
+interactive_quiz/quiz/__pycache__/
+interactive_quiz/quiz/migrations/__pycache__/
