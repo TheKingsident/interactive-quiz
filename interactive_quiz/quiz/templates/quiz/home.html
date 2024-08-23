@@ -11,7 +11,7 @@
 {% block content %}
 <center>
 <h1>Quiz App coming right up</h1>
-<p> {{ daysDeveloped }} {{ days }} in development without incidence.</p>
+<br/>
 </center>
 {% for quiz in quiz_list %}
 <div class="container-sm quiz-container">
@@ -25,5 +25,11 @@
     </ul>
 
 </div>
+<br/>
 {% endfor %}
+
+<center>
+    <br/>
+    <p> {{ daysDeveloped }} {{ days }} in development without incidence.</p>
+</center>
 {% endblock %}
