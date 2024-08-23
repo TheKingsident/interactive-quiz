@@ -11,7 +11,7 @@ def home(request):
     if daysDeveloped <= 1:
         days = "day"
 
-    return render(request, 'home.html', {
+    return render(request, 'quiz/home.html', {
         "daysDeveloped": daysDeveloped,
         "days": days
     })
