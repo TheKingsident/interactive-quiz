@@ -1,0 +1,5 @@
+.quiz-container {
+    border: 2px solid #000; /* Border thickness and color */
+    box-sizing: border-box; /* Ensures padding and border are included in the width and height */
+    width: 100%; /* Spans the full width of the container */
+}
