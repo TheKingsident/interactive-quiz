@@ -1,16 +1,7 @@
-
-{% extends 'quiz/base.html' %}
-
 {% block content %}
 <center>
 <h1>Quiz App coming right up</h1>
 <br/>
-</center>
-{% for quiz in quiz_list %}
-{% include 'quiz/question.html' %}
-{% endfor %}
-<center>
-    <br/>
-    <p> {{ daysDeveloped }} {{ days }} in development without incidence.</p>
+<a href="{% url 'start_quiz' %}" class="btn btn-outline-primary">Start Quiz</a>
 </center>
 {% endblock %}

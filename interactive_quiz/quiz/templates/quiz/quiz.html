@@ -1,0 +1,12 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<center>
+<h1>Quiz</h1>
+<br/>
+</center>
+{% for quiz in quiz_list %}
+{% include 'quiz/question.html' %}
+{% endfor %}
+
+{% endblock %}
