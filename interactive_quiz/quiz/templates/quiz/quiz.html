@@ -5,7 +5,7 @@
 <h1>Quiz</h1>
 <br/>
 </center>
-<form action="{% url 'start_quiz' %}" method="post">
+<form action="{% url 'start-quiz' %}" method="post">
     {% csrf_token %}
         {% for quiz in quiz_list %}
             {% include 'quiz/question.html' %}
