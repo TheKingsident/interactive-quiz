@@ -15,7 +15,7 @@ class Score(models.Model):
         return f"{self.user.username}: {self.score}"
 
 class Quiz(models.Model):
-    question = models.CharField(max_length=200)
+    question = models.CharField(max_length=200, unique=True)
     answer = models.CharField(max_length=200)
     topic = models.CharField(max_length=200, blank=True)
     difficulty = models.CharField(max_length=200)
