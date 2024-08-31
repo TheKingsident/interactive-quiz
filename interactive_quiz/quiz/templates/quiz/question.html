@@ -11,9 +11,9 @@
 
     <ul>
         {% for option in quiz.options.all %}
-            <li>{{ option.option_text }}</li>
+            <input type="radio" id="{{ option.id }}" name="option_{{ quiz.id }}" value="{{ option.id }}">
+            <label for="{{ option.id }}">{{ option.option_text }}</label><br>
         {% endfor %}
-
     </ul>
 
 </div>

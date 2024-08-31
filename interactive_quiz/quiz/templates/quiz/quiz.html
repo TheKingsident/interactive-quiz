@@ -5,8 +5,15 @@
 <h1>Quiz</h1>
 <br/>
 </center>
-{% for quiz in quiz_list %}
-    {% include 'quiz/question.html' %}
-{% endfor %}
+<form action="{% url 'start_quiz' %}" method="post">
+    {% csrf_token %}
+        {% for quiz in quiz_list %}
+            {% include 'quiz/question.html' %}
+        {% endfor %}
+
+        <center>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </center>
+</form>
 
 {% endblock %}
