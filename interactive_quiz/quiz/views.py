@@ -40,6 +40,10 @@ def add_quiz(request):
         if 'added' in request.GET:
             added = True
 
+    for form in option_formset.forms:
+        if 'DELETE' in form.fields:
+            del form.fields['DELETE']
+
     return render(request, 'quiz/add_quiz.html', {
         'question_form': question_form,
         'option_formset': option_formset,
