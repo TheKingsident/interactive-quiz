@@ -39,4 +39,7 @@ class OptionsFormSet(BaseInlineFormSet):
                 'placeholder': 'Option'
             })
 
-OptionFormSet = inlineformset_factory(Quiz, Option, fields=('option_text',), extra=4, formset=OptionsFormSet)
+OptionFormSet = inlineformset_factory(
+    Quiz,
+    Option,
+    fields=('option_text',), extra=4, formset=OptionsFormSet)
