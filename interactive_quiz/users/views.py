@@ -16,3 +16,8 @@ def login_view(request):
             messages.error(request, 'Username or password is incorrect.')
 
     return render(request, 'authenticate/login.html')
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'You have been logged out.')
+    return redirect('home')
