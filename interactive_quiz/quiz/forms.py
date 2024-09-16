@@ -28,7 +28,7 @@ class QuizForm(ModelForm):
         if Quiz.objects.filter(question=question).exists():
             raise ValidationError("This question has already been added.")
         return question
-    
+
 class OptionsFormSet(BaseInlineFormSet):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -43,3 +43,4 @@ OptionFormSet = inlineformset_factory(
     Quiz,
     Option,
     fields=('option_text',), extra=4, formset=OptionsFormSet)
+

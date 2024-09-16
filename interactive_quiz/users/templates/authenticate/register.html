@@ -1,0 +1,31 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Oops!</strong> Something went wrong.
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li><strong>{{ field.label }}</strong>: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}	
+    <center>
+        <h1>Register</h1>
+    </center>
+    <br/><br/>
+
+    <form action="" method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="submit" class="btn btn-primary" value="Register">
+        <br><br>
+    </form>
+
+{% endblock %}
