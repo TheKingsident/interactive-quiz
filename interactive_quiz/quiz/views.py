@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.db import IntegrityError
 import random
-from .models import Quiz
+from .models import Quiz, Score
 from .forms import QuizForm, OptionFormSet
 from django.http import HttpResponseRedirect
 
 def home(request):
-    return render(request, 'quiz/base.html')
+    score_list = Score.objects.all().order_by('-score')[:5]
+    return render(request, 'quiz/base.html', {
+        "score_list": score_list
+    })
 
 def start_quiz(request):
     quiz_list = random.sample(list(Quiz.objects.all()), 3)

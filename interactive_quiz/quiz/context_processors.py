@@ -1,4 +1,5 @@
 from datetime import datetime
+from quiz.models import Score
 
 def days_developed(request):
     startDevDate = datetime(2024, 8, 22)
@@ -12,4 +13,10 @@ def days_developed(request):
     return {
         "daysDeveloped": daysDeveloped,
         "days": days,
+    }
+
+def top_five_scores(request):
+    score_list = Score.objects.all().order_by('-score')[:5]
+    return {
+        "score_list": score_list
     }

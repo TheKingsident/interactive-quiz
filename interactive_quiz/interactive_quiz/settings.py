@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'quiz.context_processors.days_developed',
+                'quiz.context_processors.top_five_scores',
             ],
         },
     },
