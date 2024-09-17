@@ -13,7 +13,7 @@ def home(request):
     })
 
 def start_quiz(request):
-    quiz_list = random.sample(list(Quiz.objects.all()), 3)
+    quiz_list = random.sample(list(Quiz.objects.all()), 10)
 
     if request.method == "POST":
         score = 0
