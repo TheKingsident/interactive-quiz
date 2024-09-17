@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		{% load static %}
 		<style>
 			.content-container {
 				max-width: 800px;
@@ -40,10 +41,11 @@
 
 	<body>
 		{% if user.is_authenticated %}
-		<div class="container">
+		<div class="container-lg">
+
 			<div class="row-container">
 				<!-- Main content area -->
-				<div class="main-content col-sm-9">
+				<div class="main-content col-12 col-md-8">
 					<div class="content-container">
 						<br>
 						{% if messages %}
@@ -68,21 +70,37 @@
 				<!-- Sidebar will go here if user is authenticated -->
 				{% if user.is_authenticated %}
 					<br><br/>
-					<div class="sidebar-container col-sm-3">
+					<div class="sidebar-container col-md-4">
 						{% include 'quiz/sidebar.html' %}
 					</div>
 				{% endif %}
 			</div>
 		</div>
 
+
 		{% else %}
 		<center>
 		<div class="container">
 			<div class="content-container">
+				{% if messages %}
+					{% for message in messages %}
+						<div class="alert alert-warning alert-dismissible fade show" role="alert">
+							{{ message }}
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					{% endfor %}
+				{% endif %}
 				<h1>Welcome to Interactive Quiz</h1>
-				<p>Interactive Quiz is a platform where you can create quizzes and take quizzes created by others. You can also add yours for others to take!</p>
+				<br><br>
+				<div class="card">
+					<img src="{% static 'home_question_mark.jpg' %}" class="card-img" alt="..." style="width: 100%; height: auto;">
+				</div>
+				<br>
+				<p>Interactive Quiz is a platform where you can create quizzes and take quizzes created by others.</p>
+				<p> You can also add yours for others to take!</p>
 				<p>Click the button below to get started.</p>
-				<a href="{% url 'login' %}" class="btn btn-primary">Get Started</a>
+				<br>
+				<a href="{% url 'login' %}" class="btn btn-success">Get Started</a>
 
 			</div>
 		</div>
