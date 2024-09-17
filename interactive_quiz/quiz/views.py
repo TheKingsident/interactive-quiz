@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db import IntegrityError
 import random
-from .models import Quiz, Score
+from .models import Quiz, Score, Option
 from .forms import QuizForm, OptionFormSet
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 def home(request):
     score_list = Score.objects.all().order_by('-score')[:5]
@@ -13,6 +14,27 @@ def home(request):
 
 def start_quiz(request):
     quiz_list = random.sample(list(Quiz.objects.all()), 3)
+
+    if request.method == "POST":
+        score = 0
+
+        for quiz in quiz_list:
+            selected_option_id = request.POST.get(f"option_{quiz.id}")
+
+            if selected_option_id:
+                try:
+                    selected_option = Option.objects.get(id=selected_option_id)
+
+                    if selected_option.option_text == quiz.answer:
+                        score += 1
+                except Option.DoesNotExist:
+                    pass
+
+        score_obj = Score.objects.create(user = request.user, score=score)
+        score_obj.save()
+
+        messages.success(request, f'You scored {score} out of {len(quiz_list)}!')
+        return redirect('home')
     
     return render(request, 'quiz/quiz.html', {
         "quiz_list": quiz_list

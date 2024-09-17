@@ -39,6 +39,7 @@
 
 
 	<body>
+		{% if user.is_authenticated %}
 		<div class="container">
 			<div class="row-container">
 				<!-- Main content area -->
@@ -74,6 +75,19 @@
 			</div>
 		</div>
 
+		{% else %}
+		<center>
+		<div class="container">
+			<div class="content-container">
+				<h1>Welcome to Interactive Quiz</h1>
+				<p>Interactive Quiz is a platform where you can create quizzes and take quizzes created by others. You can also add yours for others to take!</p>
+				<p>Click the button below to get started.</p>
+				<a href="{% url 'login' %}" class="btn btn-primary">Get Started</a>
+
+			</div>
+		</div>
+		</center>
+		{% endif %}
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	</body>
