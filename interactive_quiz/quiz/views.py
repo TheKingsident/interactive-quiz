@@ -13,21 +13,26 @@ def home(request):
     })
 
 def start_quiz(request):
-    quiz_list = random.sample(list(Quiz.objects.all()), 10)
 
     if request.method == "POST":
+        quiz_list = request.session.get('quiz_list', [])
+
         score = 0
 
-        for quiz in quiz_list:
-            selected_option_id = request.POST.get(f"option_{quiz.id}")
+        for quiz_id in quiz_list:
+            try:
+                quiz = Quiz.objects.get(id=quiz_id)
+                selected_option_id = request.POST.get(f"option_{quiz.id}")
 
-            if selected_option_id:
-                try:
+                if selected_option_id:
+                
                     selected_option = Option.objects.get(id=selected_option_id)
 
                     if selected_option.option_text == quiz.answer:
                         score += 1
-                except Option.DoesNotExist:
+            except Quiz.DoesNotExist:
+                pass
+            except Option.DoesNotExist:
                     pass
 
         score_obj = Score.objects.create(user = request.user, score=score)
@@ -36,6 +41,10 @@ def start_quiz(request):
         messages.success(request, f'You scored {score} out of {len(quiz_list)}!')
         return redirect('home')
     
+    else:
+        quiz_list = random.sample(list(Quiz.objects.all()), 10)
+        request.session['quiz_list'] = [quiz.id for quiz in quiz_list]
+
     return render(request, 'quiz/quiz.html', {
         "quiz_list": quiz_list
     })
