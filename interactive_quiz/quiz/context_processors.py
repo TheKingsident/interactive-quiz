@@ -2,7 +2,7 @@ from datetime import datetime
 from quiz.models import Score
 
 def days_developed(request):
-    startDevDate = datetime(2024, 8, 22)
+    startDevDate = datetime(2024, 9, 4)
     todaysDate = datetime.now()
     daysDeveloped = (todaysDate - startDevDate).days
     days = "days"
