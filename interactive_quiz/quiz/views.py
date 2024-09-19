@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 
 def home(request):
-    score_list = Score.objects.all().order_by('-score')[:5]
+    score_list = Score.objects.all().order_by('-score')[:10]
     return render(request, 'quiz/base.html', {
         "score_list": score_list
     })
