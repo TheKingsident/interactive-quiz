@@ -7,12 +7,16 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 
 def home(request):
-    score_list = Score.objects.all().order_by('-score')[:10]
-    return render(request, 'quiz/base.html', {
-        "score_list": score_list
-    })
+    return render(request, 'quiz/base.html')
 
-def start_quiz(request):
+def start_quiz(request, topic):
+    if topic == "all":
+        quiz_list = random.sample(list(Quiz.objects.all()), 10)
+    elif topic == "others":
+        quiz_list = Quiz.objects.filter(topic__isnull=True) | Quiz.objects.filter(topic='')
+    else:
+        quiz_list = Quiz.objects.filter(topic=topic)
+
 
     if request.method == "POST":
         quiz_list = request.session.get('quiz_list', [])
@@ -42,11 +46,12 @@ def start_quiz(request):
         return redirect('home')
     
     else:
-        quiz_list = random.sample(list(Quiz.objects.all()), 10)
+        quiz_list = random.sample(list(quiz_list), min(10, len(quiz_list)))
         request.session['quiz_list'] = [quiz.id for quiz in quiz_list]
 
     return render(request, 'quiz/quiz.html', {
-        "quiz_list": quiz_list
+        "quiz_list": quiz_list,
+        "topic": topic,
     })
 
 def add_quiz(request):
@@ -82,4 +87,10 @@ def add_quiz(request):
         'question_form': question_form,
         'option_formset': option_formset,
         'added': added
+    })
+
+def quiz_topics(request):
+    topics_list = Quiz.objects.values_list('topic', flat=True).distinct().order_by('topic')
+    return render(request, 'quiz/topics.html', {
+        'topics_list': topics_list
     })

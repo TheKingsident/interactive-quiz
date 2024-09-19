@@ -1,0 +1,18 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<center>
+<h1>Quiz Topics</h1>
+<p>Choose a topic to test your knowledge in</p>
+<br/>
+</center>
+<div class="list-group">
+    {% for topic in topics_list %}
+        <a href="{% url 'start-quiz' topic|default:'others' %}" class="list-group-item list-group-item-action" aria-current="true">
+        {{ topic|default:"Others" }}
+        </a>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

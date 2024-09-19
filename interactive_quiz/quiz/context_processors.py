@@ -16,7 +16,7 @@ def days_developed(request):
     }
 
 def top_five_scores(request):
-    score_list = Score.objects.all().order_by('-score')[:5]
+    score_list = Score.objects.all().order_by('-score')[:10]
     return {
         "score_list": score_list
     }

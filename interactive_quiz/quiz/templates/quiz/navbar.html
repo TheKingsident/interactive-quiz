@@ -10,10 +10,13 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item"></li>
-            <a class="nav-link active" href="{% url 'start-quiz' %}">Start Quiz</a>
+            <a class="nav-link active" href="{% url 'start-quiz' 'all' %}">Start Quiz</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'add-quiz' %}">Add Quiz</a>
+          </li>
+          <li class="nav-item"></li>
+            <a class="nav-link active" href="{% url 'topics' %}">Topics</a>
           </li>
         </ul>
 
