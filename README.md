@@ -94,4 +94,4 @@ Once the app is running, you can interact with the API using tools like Postman 
 - `views.py`: Handles the app's non-API views.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
