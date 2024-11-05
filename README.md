@@ -34,7 +34,7 @@ pip install django djangorestframework
 
 ## Setup Instructions
 
-Follow the steps below to set up and run the quiz application:
+Follow these steps below to set up and run the quiz application:
 
 1. **Clone the repository**:
    ```bash
@@ -42,7 +42,7 @@ Follow the steps below to set up and run the quiz application:
    cd interactive-quiz
    ```
 
-2. **Set up a virtual environment (optional, but recommended)**:
+2. **Set up a virtual environment (optional, but recommended, strongly advised)**:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
